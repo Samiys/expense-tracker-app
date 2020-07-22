@@ -1,9 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import PurpleButton from "../Buttons/PurpleButton";
 
 const useStyles = makeStyles((theme) =>({
@@ -17,6 +16,8 @@ const useStyles = makeStyles((theme) =>({
 
 const AddTransaction = () => {
     const classes = useStyles();
+    const [GlobalText, setGlobalText] = useState('');
+    console.log(GlobalText)
 
     function FormRow() {
         return (
@@ -30,26 +31,22 @@ const AddTransaction = () => {
                         <div className={classes.root}>
                         <p>Text:</p>
                         <br/>
-                        <TextField id="outlined-basic" label="Text" variant="outlined" />
+                        <TextField id="outlined-basic" type="text" label="Text" variant="outlined" />
                         <br/>
                         <br/>
                         <p>Amount:</p>
                         <span>(use +/- with value for Income/Expense)</span>
                         <br/>
                         <br/>
-                        <TextField id="outlined-basic" label="Amount" variant="outlined" />
+                        <TextField
+                             value={GlobalText} onChange={(e)=> {setGlobalText(e.target.value)}
+                             } id="outlined-basic" type="number" label="Amount" variant="outlined" />
                         <br/>
                         <br/>
                         </div>
                         <PurpleButton/>
                     </form>
-
-
                 </Grid>
-
-
-
-
             </React.Fragment>
         );
     }

@@ -1,6 +1,5 @@
 import React from "react";
-import { makeStyles, withStyles, createMuiTheme } from '@material-ui/core/styles';
-import { purple } from '@material-ui/core/colors';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) =>({
@@ -12,16 +11,9 @@ const useStyles = makeStyles((theme) =>({
     },
 }));
 
-const theme = createMuiTheme({
-    palette: {
-        primary: purple,
-    },
-});
-
 
 const ColorButton = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(purple[500]),
         backgroundColor: '#847ff9',
         '&:hover': {
             backgroundColor: '#a29bfe',
@@ -34,7 +26,7 @@ const PurpleButton = () => {
     const classes = useStyles();
     return (
         <div>
-            <ColorButton className={classes.submit + ' ' + classes.root} type="submit" fullWidth variant="contained" color="primary" >
+            <ColorButton className={classes.submit + ' ' + classes.root} type="submit" value="Add Transaction" fullWidth variant="contained" color="primary" >
                 Add Transaction
             </ColorButton>
         </div>
