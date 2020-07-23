@@ -29,7 +29,7 @@ const AddTransaction = () => {
             event.preventDefault();
 
             addTransaction({
-                amount: Number(newAmount),
+                amount: newAmount,
                 desc: newDesc
             });
         };

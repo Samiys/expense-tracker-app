@@ -30,6 +30,23 @@ const useStyles = makeStyles({
         alignContent: "center"
     }
 });
+export const IncExpContext = createContext(IncomeExpense);
+
+export const getIncome = () => {
+    let transactions = [{amount:100,desc:"demo"}]
+    let income = 0;
+    console.log(transactions)
+    for (var i = 0; i < transactions.length; i++)
+    {
+        if (transactions[i].amount > 0)
+        {
+            income += transactions[i].amount;
+        }
+
+    }
+    return income;
+};
+
 
 function IncomeExpense() {
     const classes = useStyles();
@@ -38,18 +55,7 @@ function IncomeExpense() {
 
     function FormRow() {
 
-        function getIncome() {
-            let income = 0;
-            for (var i = 0; i < transactions.length; i++)
-            {
-                if (transactions[i].amount > 0)
-                {
-                    income += transactions[i].amount;
-                }
-
-            }
-            return income;
-        };
+   
 
         const getExpense = () => {
             let expense = 0;
