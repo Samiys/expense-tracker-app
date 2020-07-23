@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import "../app/App.css"
+import {TransactionContext} from "../../Hooks/TransactionContext";
 
 const TransactionHistory = () => {
 
-    let transactions = [
-        {amount: 500,  desc: "Cash"},
-        {amount: -40,  desc: "Book"},
-        {amount: -200,  desc: "Camera"}
-    ]
+    let {transactions} = useContext(TransactionContext);
+
 
     function FormRow() {
         return (
@@ -22,7 +20,7 @@ const TransactionHistory = () => {
                     <ul className="transaction-list">
                     {transactions.map((transObj, ind) => {
                         return (
-                            <li>
+                            <li key={ind}>
                                 <span>{transObj.desc}</span>
                                 <span>{transObj.amount}</span>
                             </li>

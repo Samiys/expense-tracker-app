@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
+import {getIncome} from "../IncomeExpense/IncomeExpense";
 
 const Balance = () => {
     return (
         <div>
-            <h2>YOUR BALANCE <br/> $0.00 </h2>
+            <h2>YOUR BALANCE <br/> ${ getIncome() } </h2>
         </div>
     );
 }

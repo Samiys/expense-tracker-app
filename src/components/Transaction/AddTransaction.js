@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import PurpleButton from "../Buttons/PurpleButton";
+import {TransactionContext} from "../../Hooks/TransactionContext";
 
 const useStyles = makeStyles((theme) =>({
     root: {
@@ -16,10 +17,23 @@ const useStyles = makeStyles((theme) =>({
 
 const AddTransaction = () => {
     const classes = useStyles();
-    const [GlobalText, setGlobalText] = useState('');
-    console.log(GlobalText)
+    let {addTransaction} = useContext(TransactionContext);
+
 
     function FormRow() {
+
+        let [newDesc, setDesc] = useState("");
+        let [newAmount, setAmount] = useState(0);
+
+        const handleAddition = (event) => {
+            event.preventDefault();
+
+            addTransaction({
+                amount: newAmount,
+                desc: newDesc
+            });
+        };
+
         return (
             <React.Fragment>
                 <Grid item xs={8}>
@@ -27,11 +41,13 @@ const AddTransaction = () => {
                     <h3>Add Transaction</h3>
                     <Divider />
                     <br/>
-                    <form >
+                    <form onSubmit={handleAddition}>
                         <div className={classes.root}>
                         <p>Text:</p>
                         <br/>
-                        <TextField id="outlined-basic" type="text" label="Text" variant="outlined" />
+                        <TextField
+                            onChange={(e)=> {setDesc(e.target.value)}}
+                            id="outlined-basic" type="text" label="Text" variant="outlined" required/>
                         <br/>
                         <br/>
                         <p>Amount:</p>
@@ -39,8 +55,8 @@ const AddTransaction = () => {
                         <br/>
                         <br/>
                         <TextField
-                             value={GlobalText} onChange={(e)=> {setGlobalText(e.target.value)}
-                             } id="outlined-basic" type="number" label="Amount" variant="outlined" />
+                              onChange={(e)=> {setAmount(e.target.value.replace(/\D/,''))}}
+                              id="outlined-basic" type="number" label="Amount" variant="outlined" required/>
                         <br/>
                         <br/>
                         </div>

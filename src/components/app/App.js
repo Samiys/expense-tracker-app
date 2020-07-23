@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Header from "../header/Header";
@@ -6,17 +6,20 @@ import Balance from "../balance/Balance";
 import IncomeExpense from "../IncomeExpense/IncomeExpense";
 import TransactionHistory from "../Transaction/TransactionHistory";
 import AddTransaction from "../Transaction/AddTransaction";
-import GlobalContext from "../../Hooks/GlobalContext";
+import {TransactionProvider} from "../../Hooks/TransactionContext";
+import {lightBlue} from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
+    lightBlue: {
+        background: "lightBlue",
+    }
 }));
 
 function App() {
     const classes = useStyles();
-    let GlobalValue = useState(1);
 
     function FormRow() {
         return (
@@ -25,13 +28,13 @@ function App() {
                 </Grid>
 
                 <Grid item xs={5}>
-                    <GlobalContext.Provider value={GlobalValue}>
-                    <Header/>
-                    <Balance/>
-                    <IncomeExpense/>
-                    <TransactionHistory/>
-                    <AddTransaction/>
-                    </GlobalContext.Provider>
+                    <TransactionProvider>
+                        <Header/>
+                        <Balance/>
+                        <IncomeExpense/>
+                        <TransactionHistory/>
+                        <AddTransaction/>
+                    </TransactionProvider>
                 </Grid>
 
             </React.Fragment>
