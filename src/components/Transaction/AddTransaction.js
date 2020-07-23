@@ -59,7 +59,7 @@ const AddTransaction = () => {
                         <br/>
                         <br/>
                         <TextField
-                              onChange={(e)=> {setAmount(e.target.value.replace(/\D/,''))}}
+                              onChange={(e)=> {setAmount(e.target.value)}}
                               id="outlined-basic" type="number" label="Amount" variant="outlined" required/>
                         <br/>
                         <br/>

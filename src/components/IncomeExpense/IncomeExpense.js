@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import {TransactionContext} from "../../Hooks/TransactionContext";
+import {getExpense, getIncome} from "../../Hooks/actions";
 
 const useStyles = makeStyles({
     root: {
@@ -31,38 +32,13 @@ const useStyles = makeStyles({
     }
 });
 
+
 function IncomeExpense() {
     const classes = useStyles();
 
     let {transactions} = useContext(TransactionContext);
 
     function FormRow() {
-
-        function getIncome() {
-            let income = 0;
-            for (var i = 0; i < transactions.length; i++)
-            {
-                if (transactions[i].amount > 0)
-                {
-                    income += transactions[i].amount;
-                }
-
-            }
-            return income;
-        };
-
-        const getExpense = () => {
-            let expense = 0;
-            for (var i = 0; i < transactions.length; i++)
-            {
-                if (transactions[i].amount < 0)
-                {
-                    expense -= transactions[i].amount;
-                }
-            }
-            return expense;
-        };
-        // console.log(getExpense())
 
         return (
             <React.Fragment>
@@ -75,7 +51,7 @@ function IncomeExpense() {
                             </Typography>
                             <Typography className={classes.colorGreen + ' ' + classes.weight} align="center" variant="body2" component="p">
 
-                                +${getIncome()}
+                                +${getIncome(transactions)}
                             </Typography>
                         </CardContent>
                     </Card>
@@ -91,7 +67,7 @@ function IncomeExpense() {
                       </Typography>
                      <Typography className={classes.colorRed + ' ' + classes.weight} align="center" variant="body2" component="p">
 
-                         -${getExpense()}
+                         -${getExpense(transactions)}
                      </Typography>
                  </CardContent>
                 </Card>
