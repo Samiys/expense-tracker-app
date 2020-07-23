@@ -22,7 +22,7 @@ const TransactionHistory = () => {
                         return (
                             <li key={ind}>
                                 <span>{transObj.desc}</span>
-                                <span>{transObj.amount}</span>
+                                <span>${transObj.amount}</span>
                             </li>
                         );
                     })}
