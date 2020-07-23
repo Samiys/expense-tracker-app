@@ -31,9 +31,6 @@ const useStyles = makeStyles({
     }
 });
 
-
-export const IncExpContext = createContext(IncomeExpense);
-
 function IncomeExpense() {
     const classes = useStyles();
 

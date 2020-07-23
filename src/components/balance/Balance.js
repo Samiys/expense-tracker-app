@@ -4,7 +4,7 @@ import {getIncome} from "../IncomeExpense/IncomeExpense";
 const Balance = () => {
     return (
         <div>
-            <h2>YOUR BALANCE <br/> ${ getIncome() } </h2>
+            <h2>YOUR BALANCE <br/> ${  } </h2>
         </div>
     );
 }
