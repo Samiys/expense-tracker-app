@@ -1,13 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, Component } from "react";
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import "../app/App.css"
 import {TransactionContext} from "../../Hooks/TransactionContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const TransactionHistory = () => {
 
     let {transactions} = useContext(TransactionContext);
+    let {deleteTransaction} = useContext(TransactionContext);
 
+    const deleteID = (index) => {
+        return (
+            deleteTransaction({
+                index: index
+            })
+        );
+    };
 
     function FormRow() {
         return (
@@ -18,18 +28,29 @@ const TransactionHistory = () => {
                     <Divider />
 
                     <ul className="transaction-list">
-                    {transactions.map((transObj, ind) => {
+                    {transactions.map((transObj, index) => {
                         return (
-                            <li key={ind}>
+                            <li key={index}>
                                 <span>{transObj.desc}</span>
                                 <span>${transObj.amount}</span>
+                                <button className="btn btn-primary">
+                                    <span>
+                                       <FontAwesomeIcon onClick={
+                                           () => deleteID(index)
+                                       } icon="trash">
+                                       </FontAwesomeIcon>
+                                    </span>
+                                </button>
+                                <button className="btn btn-primary">
+                                    <span>
+                                       <FontAwesomeIcon icon="edit"></FontAwesomeIcon>
+                                    </span>
+                                </button>
                             </li>
                         );
                     })}
                     </ul>
-
                 </Grid>
-
             </React.Fragment>
         );
     }

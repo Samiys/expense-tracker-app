@@ -7,7 +7,9 @@ import IncomeExpense from "../IncomeExpense/IncomeExpense";
 import TransactionHistory from "../Transaction/TransactionHistory";
 import AddTransaction from "../Transaction/AddTransaction";
 import {TransactionProvider} from "../../Hooks/TransactionContext";
-import {lightBlue} from "@material-ui/core/colors";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faTrash, faPlus, faEdit } from "@fortawesome/free-solid-svg-icons";
+library.add(faTrash, faEdit, faPlus);
 
 const useStyles = makeStyles((theme) => ({
     root: {

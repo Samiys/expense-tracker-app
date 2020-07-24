@@ -1,6 +1,5 @@
 export const getIncome = (transactions) => {
     let income = 0;
-    console.log(transactions)
     for (var i = 0; i < transactions.length; i++)
     {
         if (transactions[i].amount > 0)
@@ -21,6 +20,5 @@ export const getExpense = (transactions) => {
             expense -= transactions[i].amount;
         }
     }
-    console.log(expense)
     return expense;
 };
