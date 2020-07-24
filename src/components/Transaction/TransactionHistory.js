@@ -41,11 +41,11 @@ const TransactionHistory = () => {
                                        </FontAwesomeIcon>
                                     </span>
                                 </button>
-                                <button className="btn btn-primary">
-                                    <span>
-                                       <FontAwesomeIcon icon="edit"></FontAwesomeIcon>
-                                    </span>
-                                </button>
+                                {/*<button className="btn btn-primary">*/}
+                                {/*    <span>*/}
+                                {/*       <FontAwesomeIcon icon="edit"></FontAwesomeIcon>*/}
+                                {/*    </span>*/}
+                                {/*</button>*/}
                             </li>
                         );
                     })}
