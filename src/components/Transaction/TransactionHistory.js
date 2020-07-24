@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const TransactionHistory = () => {
 
     let {transactions} = useContext(TransactionContext);
-    let {deleteTransaction} = useContext(TransactionContext);
+    let {deleteTransaction, editTransaction} = useContext(TransactionContext);
 
     const deleteID = (index) => {
         return (
@@ -18,6 +18,17 @@ const TransactionHistory = () => {
             })
         );
     };
+
+    const editID = (amount, desc, index) => {
+        return (
+            editTransaction({
+                amount: amount,
+                desc: desc,
+                index: index,
+            })
+        );
+    }
+    console.log(editID);
 
     function FormRow() {
         return (
@@ -41,11 +52,14 @@ const TransactionHistory = () => {
                                        </FontAwesomeIcon>
                                     </span>
                                 </button>
-                                {/*<button className="btn btn-primary">*/}
-                                {/*    <span>*/}
-                                {/*       <FontAwesomeIcon icon="edit"></FontAwesomeIcon>*/}
-                                {/*    </span>*/}
-                                {/*</button>*/}
+                                <button className="btn btn-primary">
+                                    <span>
+                                       <FontAwesomeIcon onClick={
+                                           () => editID(transObj.amount, transObj.desc, transObj.index)
+                                       } icon="edit">
+                                       </FontAwesomeIcon>
+                                    </span>
+                                </button>
                             </li>
                         );
                     })}

@@ -17,13 +17,13 @@ const useStyles = makeStyles((theme) =>({
 
 const AddTransaction = () => {
     const classes = useStyles();
-    let {addTransaction} = useContext(TransactionContext);
+    let { addTransaction, editTransaction } = useContext(TransactionContext);
 
 
     function FormRow() {
 
         let [newDesc, setDesc] = useState("");
-        let [newAmount, setAmount] = useState(0);
+        let [newAmount, setAmount, ] = useState(0);
 
         const handleAddition = (event) => {
             event.preventDefault();
