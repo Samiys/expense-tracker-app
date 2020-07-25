@@ -17,13 +17,17 @@ const useStyles = makeStyles((theme) =>({
 
 const AddTransaction = () => {
     const classes = useStyles();
-    let { addTransaction, editTransaction } = useContext(TransactionContext);
+    let { addTransaction, editTransaction, testsID } = useContext(TransactionContext);
 
 
     function FormRow() {
 
         let [newDesc, setDesc] = useState("");
         let [newAmount, setAmount, ] = useState(0);
+
+        // newAmount = 1;
+
+       console.log(newAmount);
 
         const handleAddition = (event) => {
             event.preventDefault();
@@ -32,17 +36,18 @@ const AddTransaction = () => {
                 alert("Please enter correct value");
                 return false;
             }
-            addTransaction({
-                amount: Number(newAmount),
-            desc: newDesc
-            });
+                addTransaction({
+                    amount: Number(newAmount),
+                    desc: newDesc
+                });
+
         };
 
         return (
             <React.Fragment>
                 <Grid item xs={8}>
                     <br/>
-                    <h3>Add Transaction</h3>
+                    <h3>{newAmount === 0 ? 'Add' : 'Edit' } Transaction</h3>
                     <Divider />
                     <br/>
                     <form onSubmit={handleAddition}>

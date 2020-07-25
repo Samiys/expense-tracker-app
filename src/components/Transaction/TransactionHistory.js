@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const TransactionHistory = () => {
 
     let {transactions} = useContext(TransactionContext);
-    let {deleteTransaction, editTransaction} = useContext(TransactionContext);
+    let {deleteTransaction, testsID} = useContext(TransactionContext);
 
     const deleteID = (index) => {
         return (
@@ -19,16 +19,13 @@ const TransactionHistory = () => {
         );
     };
 
-    const editID = (amount, desc, index) => {
-        return (
-            editTransaction({
-                amount: amount,
-                desc: desc,
-                index: index,
-            })
-        );
-    }
-    console.log(editID);
+    // const editID = (index) => {
+    //     return (
+    //         testsID({
+    //             index: index,
+    //         })
+    //     );
+    // }
 
     function FormRow() {
         return (
@@ -42,6 +39,7 @@ const TransactionHistory = () => {
                     {transactions.map((transObj, index) => {
                         return (
                             <li key={index}>
+                                <span>{index + 1}</span>
                                 <span>{transObj.desc}</span>
                                 <span>${transObj.amount}</span>
                                 <button className="btn btn-primary">
@@ -52,14 +50,14 @@ const TransactionHistory = () => {
                                        </FontAwesomeIcon>
                                     </span>
                                 </button>
-                                <button className="btn btn-primary">
-                                    <span>
-                                       <FontAwesomeIcon onClick={
-                                           () => editID(transObj.amount, transObj.desc, transObj.index)
-                                       } icon="edit">
-                                       </FontAwesomeIcon>
-                                    </span>
-                                </button>
+                                {/*<button className="btn btn-primary">*/}
+                                {/*    <span>*/}
+                                {/*       <FontAwesomeIcon onClick={*/}
+                                {/*           () => editID(index)*/}
+                                {/*       } icon="edit">*/}
+                                {/*       </FontAwesomeIcon>*/}
+                                {/*    </span>*/}
+                                {/*</button>*/}
                             </li>
                         );
                     })}
